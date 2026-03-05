@@ -2,3 +2,7 @@
 
 !.gitignore
 !sisadmin_testovoe.pdf
+
+!task1/
+!task1/**
+task1/access.log # Файл большой, да и в целом логи кто коммитит-то?
