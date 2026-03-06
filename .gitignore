@@ -12,3 +12,4 @@ task1/access.log
 !task2/lsof_list_established_tcp.sh
 !task2/Артефакты/
 !task2/Артефакты/скрин_логов.png
+!task2/README.md
