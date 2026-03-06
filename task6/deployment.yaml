@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+  #  Мб, если нужно, добавить namespace: my-namespace
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-app
+  strategy:
+    # Тип RollingUpdate позволяет обновлять поды по одному, не допуская их одновременного отключения
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0 # мксимальное кол-во недоступных подов во время обновления
+      maxSurge: 1 # максимальное кол-во дополнительных подов, создаваемых во время обновления
+      # То есть новый под будет создан и запущен, а старый будет удалён только после того, как новый станет готовым
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+        - name: my-app
+          # Думаю, раз Докеру образ доступен, то и нам доступен без указания registry
+          image: my-app-image
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            # Пробы на TCP-порт 80, с начальной задержкой 5 секунд и периодом проверки 10 секунд
+            tcpSocket:
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            # livenessProbe -контроль за состоянием приложения в течение всего времени его жизни
+            # Если не пройдена, kubelet завершает работу контейнера, он подвергается политике перезапуска
+            tcpSocket:
+              port: 80
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            # Ещё есть startupProbe для контроля за состоянием приложения в течение его запуска, но мы не знаем о приложении ничего
+           # Значения от балды взяты, нужны для hpa, то есть масштабирования по cpu
+          resources:
+            requests:
+              cpu: "100m"  
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"

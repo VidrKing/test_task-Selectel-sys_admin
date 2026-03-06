@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app
+spec:
+  # LoadBalancer - обеспечивает внешний доступ к сервису, создавая внешний балансировщик
+  # Представим, что он нам доступен и на не нужно настраивать Ingress на чём-то типа nginx
+  type: LoadBalancer
+  # Выбор селектора для связывания сервиса с подами по метке
+  selector:
+    app: my-app
+  ports:
+    # Порт 8080 на сервисе будет перенаправляться на порт 80 в контейнере
+    - protocol: TCP
+      port: 8080
+      targetPort: 80

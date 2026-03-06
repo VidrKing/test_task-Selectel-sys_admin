@@ -27,3 +27,9 @@ task1/access.log
 
 !task5/
 !task5/README.md
+
+!task6/
+!task6/deployment.yaml
+!task6/service.yaml
+!task6/hpa.yaml
+!task6/README.md
