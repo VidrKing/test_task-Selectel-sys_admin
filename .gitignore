@@ -2,6 +2,7 @@
 
 !.gitignore
 !sisadmin_testovoe.pdf
+!README.md
 
 !task1/
 !task1/**
