@@ -1,1 +1,1 @@
-lsof -a -iTCP -sTCP:ESTABLISHED
+lsof -a -iTCP -sTCP:ESTABLISHED "$@"
