@@ -1,0 +1,1 @@
+( set -o pipefail; f="${1:-access.log}"; [[ -r "$f" ]] || { echo "ERROR: нету вашего файлика, ну или путь лучше пиши (а, или прав нет): $f" >&2; exit 1; }; awk 'match($0, /"[^"]*" [0-9]{3} ([0-9]+|-)/, m) { b=m[1]; if (b=="-") b=0; sum[$1]+=b } END { for (ip in sum) printf "%d bytes for %s\n", sum[ip], ip }' "$f" | sort -nr)
