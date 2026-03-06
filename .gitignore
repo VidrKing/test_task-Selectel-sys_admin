@@ -13,3 +13,11 @@ task1/access.log
 !task2/Артефакты/
 !task2/Артефакты/скрин_логов.png
 !task2/README.md
+
+!task3/
+!task3/Артефакты/
+!task3/README.md
+!task3/Артефакты/01-mysql-connections.png
+!task3/Артефакты/02-mysql-thread-activity.png
+!task3/Артефакты/03-mysql-questions.png
+!task3/Артефакты/04-mysql-thread-cache.png
