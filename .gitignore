@@ -33,3 +33,6 @@ task1/access.log
 !task6/service.yaml
 !task6/hpa.yaml
 !task6/README.md
+
+!/task7/
+!/task7/README.md
